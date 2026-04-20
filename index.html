@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉利论坛 - 最新六合彩号码统计器(在线生肖,单双,大小,波色等综合号码统计器) 6400.cc</title>
+    <meta name='description' content='最新六合彩号码统计器 是针对六合彩(生肖,单双,号码)分析、统计的实用工具,6400.cc'/>
+    <meta name='keywords' content='六合彩号码统计器,最新六合彩号码统计器,生肖统计,单双统计,号码统计,6400.cc'/>
+    <style>
+		a{ text-decoration: none}
+		.L15{ FONT-SIZE: 0.9em; COLOR: #000000; font-weight:700;}
+		a:hover{ text-decoration: none}
+        :root {
+            --primary-color: blue;
+            --hover-color: #3949ab;
+            --text-color: #333;
+            --light-text: #757575;
+            --bg-color: #ccc;
+            --sidebar-width: 100%;
+            --transition-speed: 0.3s;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6em;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            position: fixed;
+			top: -moz-calc(0% + 270px);top: -webkit-calc(0% + 270px);top: calc(0% + 270px);
+            left: 0;
+			width:var(--sidebar-width);
+            height: 68vh;
+			z-index: 1000;
+			background-color: rgba(100, 100, 100, 0.3);
+            width: var(--sidebar-width);
+			border-radius: 10px;
+			border: 1px solid black;
+            background: #eee;
+            box-shadow: 2px 0 20px rgba(155, 155, 155, 0.5);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed) ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        /* 导航内容区域 */
+        .sidebar-content {
+            padding:10px;
+            flex: 1;
+        }
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .sidebar-title {
+            font-size: 1.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+            transition: color 0.2s;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .close-btn:hover {
+            background-color: rgba(100, 100, 100, 0.3);
+            color: var(--primary-color);
+        }
+        /* 导航菜单样式 */
+        .nav-menu {
+            list-style: none;
+        }
+        .nav-menu .INPUT{
+            padding: 5px 10px;
+			min-width:66px;
+			border: 1px solid blue;
+			float:left;
+			margin:2px 5px;
+			background: #ccc;
+			border-radius: 5px;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(92, 107, 192, 0.1);
+            color: var(--primary-color);
+        }
+        /* 主内容区域 */
+        .content {
+            padding: 5px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+			width:980px;
+			margin: 0 auto;
+        }
+        .page-title {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 5px;
+			text-align:center;
+        }
+        .card .INPUT{
+			padding: 5px 10px;
+			border-radius: 5px;
+			border: 1px solid black;
+			background: #808;
+			margin:5px 5px;
+			min-width:80px;
+			color: snow;
+			font-size:0.9em;
+			font-weight:500;
+			float:left;
+        }
+		.card TEXTAREA{WIDTH: 100%;HEIGHT: 180px;border: 2px solid #393;		}
+        /* 切换按钮样式 - 跟随侧边栏移动 */
+        .toggle-btn {
+            position: fixed;
+            left: 0;
+			top: -moz-calc(0% + 250px);top: -webkit-calc(0% + 250px);top: calc(0% + 250px);
+            transform: translateY(-50%);
+            width: 100px;
+			/*word-spacing: 40px;*/
+			font-size:1.2em;
+            height: 50px;
+            background-color: #e66;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(100, 100, 100, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 991;
+            transition: all var(--transition-speed) ease;
+            color: snow;
+        }
+        .toggle-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .toggle-btn.open {
+            left: -moz-calc(100% - 125px);left: -webkit-calc(100% - 125px);left: calc(100% - 125px);
+        }
+		.INPUT:hover{
+			background-color: #f3f;
+		}
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            :root {
+                --sidebar-width: 100%;
+            }
+            .content {
+                padding: 10px;
+				width:100%;
+				
+            }
+        }
+    </style>
+
+<script>
+
+	</script>
+</head>
+<body>
+    <!-- 切换按钮 -->
+    <button class="toggle-btn" id="toggleBtn"></button>
+	<div class="sidebar-container">
+	<!-- 侧边导航弹窗 -->
+		<nav class="sidebar" id="sidebar">
+			<div class="sidebar-content">
+				<div class="sidebar-header">
+					<h2 class="sidebar-title">类型</h2>
+					<button class="close-btn" id="closeBtn">X</button>
+				</div>
+				<ul class="nav-menu">
+				<FORM style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px" name=form2>
+				<INPUT  class="INPUT "title=01, type=hidden value=01 name=n_01>
+				<INPUT  class="INPUT "title=02, type=hidden value=02 name=n_02> 
+				<INPUT  class="INPUT "title=03, type=hidden value=03 name=n_03> 
+				<INPUT  class="INPUT "title=04, type=hidden value=04 name=n_04> 
+				<INPUT  class="INPUT "title=05, type=hidden value=05 name=n_05> 
+				<INPUT  class="INPUT "title=06, type=hidden value=06 name=n_06> 
+				<INPUT  class="INPUT "title=07, type=hidden value=07 name=n_07> 
+				<INPUT  class="INPUT "title=08, type=hidden value=08 name=n_08> 
+				<INPUT  class="INPUT "title=09, type=hidden value=09 name=n_09> 
+				<INPUT  class="INPUT "title=10, type=hidden value=10 name=n_10> 
+				<INPUT  class="INPUT "title=11, type=hidden value=11 name=n_11> 
+				<INPUT  class="INPUT "title=12, type=hidden value=12 name=n_12> 
+				<INPUT  class="INPUT "title=13, type=hidden value=13 name=n_13> 
+				<INPUT  class="INPUT "title=14, type=hidden value=14 name=n_14> 
+				<INPUT  class="INPUT "title=15, type=hidden value=15 name=n_15> 
+				<INPUT  class="INPUT "title=16, type=hidden value=16 name=n_16> 
+				<INPUT  class="INPUT "title=17, type=hidden value=17 name=n_17> 
+				<INPUT  class="INPUT "title=18, type=hidden value=18 name=n_18> 
+				<INPUT  class="INPUT "title=19, type=hidden value=19 name=n_19> 
+				<INPUT  class="INPUT "title=20, type=hidden value=20 name=n_20> 
+				<INPUT  class="INPUT "title=21, type=hidden value=21 name=n_21> 
+				<INPUT  class="INPUT "title=22, type=hidden value=22 name=n_22> 
+				<INPUT  class="INPUT "title=23, type=hidden value=23 name=n_23> 
+				<INPUT  class="INPUT "title=24, type=hidden value=24 name=n_24> 
+				<INPUT  class="INPUT "title=25, type=hidden value=25 name=n_25> 
+				<INPUT  class="INPUT "title=26, type=hidden value=26 name=n_26> 
+				<INPUT  class="INPUT "title=27, type=hidden value=27 name=n_27> 
+				<INPUT  class="INPUT "title=28, type=hidden value=28 name=n_28> 
+				<INPUT  class="INPUT "title=29, type=hidden value=29 name=n_29> 
+				<INPUT  class="INPUT "title=30, type=hidden value=30 name=n_30> 
+				<INPUT  class="INPUT "title=31, type=hidden value=31 name=n_31> 
+				<INPUT  class="INPUT "title=32, type=hidden value=32 name=n_32> 
+				<INPUT  class="INPUT "title=33, type=hidden value=33 name=n_33> 
+				<INPUT  class="INPUT "title=34, type=hidden value=34 name=n_34> 
+				<INPUT  class="INPUT "title=35, type=hidden value=35 name=n_35> 
+				<INPUT  class="INPUT "title=36, type=hidden value=36 name=n_36> 
+				<INPUT  class="INPUT "title=37, type=hidden value=37 name=n_37> 
+				<INPUT  class="INPUT "title=38, type=hidden value=38 name=n_38> 
+				<INPUT  class="INPUT "title=39, type=hidden value=39 name=n_39> 
+				<INPUT  class="INPUT "title=40, type=hidden value=40 name=n_40> 
+				<INPUT  class="INPUT "title=41, type=hidden value=41 name=n_41> 
+				<INPUT  class="INPUT "title=42, type=hidden value=42 name=n_42> 
+				<INPUT  class="INPUT "title=43, type=hidden value=43 name=n_43> 
+				<INPUT  class="INPUT "title=44, type=hidden value=44 name=n_44> 
+				<INPUT  class="INPUT "title=45, type=hidden value=45 name=n_45> 
+				<INPUT  class="INPUT "title=46, type=hidden value=46 name=n_46> 
+				<INPUT  class="INPUT "title=47, type=hidden value=47 name=n_47> 
+				<INPUT  class="INPUT "title=48, type=hidden value=48 name=n_48> 
+				<INPUT  class="INPUT "title=49, type=hidden value=49 name=n_49> 
+				<INPUT  class="INPUT "title=1, type=hidden value=1 name=n_1> 
+				<INPUT  class="INPUT "title=2, type=hidden value=2 name=n_2> 
+				<INPUT  class="INPUT "title=3, type=hidden value=3 name=n_3> 
+				<INPUT  class="INPUT "title=4, type=hidden value=4 name=n_4>
+				<INPUT  class="INPUT "title=5, type=hidden value=5 name=n_5>
+				<INPUT  class="INPUT "title=6, type=hidden value=6 name=n_6> 
+				<INPUT  class="INPUT "title=7, type=hidden value=7 name=n_7> 
+				<INPUT  class="INPUT "title=8, type=hidden value=8 name=n_8> 
+				<INPUT  class="INPUT "title=9, type=hidden value=9 name=n_9>
+				</FORM> 
+				<FORM style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px" name=form>
+				<INPUT  class="INPUT "title=01,02,07,08,12,13,18,19,23,24,29,30,34,35,40,45,46, type=hidden value=红 name=n_红>
+				<INPUT  class="INPUT "title=05,06,11,16,17,21,22,27,28,32,33,38,39,43,44,49, type=hidden value=绿 name=n_绿> 
+				<INPUT  class="INPUT "title=03,04,09,10,14,15,20,25,26,31,36,37,41,42,47,48, type=hidden value=蓝 name=n_蓝> 
+				<INPUT  class="INPUT "title=01,03,05,07,09,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49, onclick="addText('单,');" type=button value=单 name=n_单> 
+				<INPUT  class="INPUT "title=02,04,06,08,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48, onclick="addText('双,');" type=button value=双 name=n_双> 
+				<INPUT  class="INPUT "title=25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49, onclick="addText('大,');" type=button value=大 name=n_大>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24, onclick="addText('小,');" type=button value=小 name=n_小> 
+				<INPUT  class="INPUT "title=01,03,05,07,09,10,12,14,16,18,21,23,25,27,29,30,32,34,36,38,41,43,45,47,49, onclick="addText('合单,');" type=button value=合单 name=n_合单>
+				<INPUT  class="INPUT "title=02,04,06,08,11,13,15,17,19,20,22,24,26,28,31,33,35,37,39,40,42,44,46,48, onclick="addText('合双,');" type=button value=合双 name=n_合双>
+				<INPUT  class="INPUT "title=07,08,09,16,17,18,19,25,26,27,28,29,34,35,36,37,38,39,43,44,45,46,47,48,49, onclick="addText('合大,');" type=button value=合大 name=n_合大>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,10,11,12,13,14,15,20,21,22,23,24,30,31,32,33,40,41,42, onclick="addText('合小,');" type=button value=合小 name=n_合小>
+				<INPUT  class="INPUT "title=05,06,07,08,09,15,16,17,18,19,25,26,27,28,29,35,36,37,38,39,45,46,47,48,49, onclick="addText('尾大,');" type=button value=尾大 name=n_尾大>
+				<INPUT  class="INPUT "title=01,02,03,04,10,11,12,13,14,20,21,22,23,24,30,31,32,33,34,40,41,42,43,44, onclick="addText('尾小,');" type=button value=尾小 name=n_尾小>
+				<INPUT  class="INPUT "title=25,27,29,31,33,35,37,39,41,43,45,47,49, onclick="addText('大单,');" type=button value=大单 name=n_大单>
+				<INPUT  class="INPUT "title=26,28,30,32,34,36,38,40,42,44,46,48, onclick="addText('大双,');" type=button value=大双 name=n_大双>
+				<INPUT  class="INPUT "title=01,03,05,07,09,11,13,15,17,19,21,23, onclick="addText('小单,');" type=button value=小单 name=n_小单>
+				<INPUT  class="INPUT "title=02,04,06,08,10,12,14,16,18,20,22,24, onclick="addText('小双,');" type=button value=小双 name=n_小双>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=07,19,31,43, onclick="addText('鼠,');" type=button value=鼠 name=n_鼠>
+				<INPUT  class="INPUT "title=06,18,30,42, onclick="addText('牛,');" type=button value=牛 name=n_牛> 
+				<INPUT  class="INPUT "title=05,17,29,41, onclick="addText('虎,');" type=button value=虎 name=n_虎> 
+				<INPUT  class="INPUT "title=04,16,28,40, onclick="addText('兔,');" type=button value=兔 name=n_兔> 
+				<INPUT  class="INPUT "title=03,15,27,39, onclick="addText('龙,');" type=button value=龙 name=n_龙> 
+				<INPUT  class="INPUT "title=02,14,26,38, onclick="addText('蛇,');" type=button value=蛇 name=n_蛇> 
+				<INPUT  class="INPUT "title=01,13,25,37,49, onclick="addText('马,');" type=button value=马 name=n_马>
+				<INPUT  class="INPUT "title=12,24,36,48, onclick="addText('羊,');" type=button value=羊 name=n_羊> 
+				<INPUT  class="INPUT "title=11,23,35,47, onclick="addText('猴,');" type=button value=猴 name=n_猴> 
+				<INPUT  class="INPUT "title=10,22,34,46, onclick="addText('鸡,');" type=button value=鸡 name=n_鸡> 
+				<INPUT  class="INPUT "title=09,21,33,45, onclick="addText('狗,');" type=button value=狗 name=n_狗> 
+				<INPUT  class="INPUT "title=08,20,32,44, onclick="addText('猪,');" type=button value=猪 name=n_猪>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=04,05,12,13,26,27,34,35,42,43, style="color: #0c0;font-weight:700;"onclick="addText('金,');" type=button value=金 name=n_金> 
+				<INPUT  class="INPUT "title=08,09,16,17,24,25,38,39,46,47, style="color: #393;font-weight:700;"onclick="addText('木,');" type=button value=木 name=n_木> 
+				<INPUT  class="INPUT "title=01,14,15,22,23,30,31,44,45, style="color: #00f;font-weight:700;"onclick="addText('水,');" type=button value=水 name=n_水> 
+				<INPUT  class="INPUT "title=02,03,10,11,18,19,32,33,40,41,48,49, style="color: #f00;font-weight:700;"onclick="addText('火,');" type=button value=火 name=n_火> 
+				<INPUT  class="INPUT "title=06,07,20,21,28,29,36,37, style="color: #800;font-weight:700;"onclick="addText('土,');" type=button value=土 name=n_土>
+				<INPUT  class="INPUT "title=01,06,08,09,10,12,13,18,20,21,22,24,25,30,32,33,34,36,37,42,44,45,46,48,49, onclick="addText('家畜,');" type=button value=家畜 name=n_家畜>
+				<INPUT  class="INPUT "title=02,03,04,05,07,11,14,15,16,17,19,23,26,27,28,29,31,35,38,39,40,41,43,47, onclick="addText('野兽,');" type=button value=野兽 name=n_野兽>
+                                                                <INPUT  class="INPUT "title=01,03,04,06,08,11,13,15,16,18,20,23,25,27,28,30,32,35,37,39,40,42,44,47,49, onclick="addText('天肖,');" type=button value=天肖 name=n_天肖>
+				<INPUT  class="INPUT "title=02,05,07,09,10,12,14,17,19,21,22,24,26,29,31,33,34,36,38,41,43,45,46,48, onclick="addText('地肖,');" type=button value=地肖 name=n_地肖>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=01,02,07,08,12,13,18,19,23,24,29,30,34,35,40,45,46, style="background-color: #f00" onclick="addText('红波,');" type=button value=红波 name=n_红波> 
+				<INPUT  class="INPUT "title=05,06,11,16,17,21,22,27,28,32,33,38,39,43,44,49, style="background-color: #fc0" onclick="addText('绿波,');" type=button value=绿波 name=n_绿波> 
+				<INPUT  class="INPUT "title=03,04,09,10,14,15,20,25,26,31,36,37,41,42,47,48, style="background-color: #0f0" onclick="addText('蓝波,');" type=button value=蓝波 name=n_蓝波>
+				<INPUT  class="INPUT "title=01,07,13,19,23,29,35,45, style="background-color: #f00" onclick="addText('红单,');" type=button value=红单 name=n_红单> 
+				<INPUT  class="INPUT "title=05,11,17,21,27,33,39,43,49, style="background-color: #fc0" onclick="addText('绿单,');" type=button value=绿单 name=n_绿单> 
+				<INPUT  class="INPUT "title=03,09,15,25,31,37,41,47, style="background-color: #0f0" onclick="addText('蓝单,');" type=button value=蓝单 name=n_蓝单>
+				<INPUT  class="INPUT "title=02,08,12,18,24,30,34,40,46, style="background-color: #f00" onclick="addText('红双,');" type=button value=红双 name=n_红双> 
+				<INPUT  class="INPUT "title=06,16,22,28,32,38,44, style="background-color: #fc0" onclick="addText('绿双,');" type=button value=绿双 name=n_绿双> 
+				<INPUT  class="INPUT "title=04,10,14,20,26,36,42,48, style="background-color: #0f0" onclick="addText('蓝双,');" type=button value=蓝双 name=n_蓝双>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=10,20,30,40, onclick="addText('0尾,');" type=button value=0尾 name=n_0尾> 
+				<INPUT  class="INPUT "title=01,11,21,31,41, onclick="addText('1尾,');" type=button value=1尾 name=n_1尾> 
+				<INPUT  class="INPUT "title=02,12,22,32,42, onclick="addText('2尾,');" type=button value=2尾 name=n_2尾> 
+				<INPUT  class="INPUT "title=03,13,23,33,43, onclick="addText('3尾,');" type=button value=3尾 name=n_3尾> 
+				<INPUT  class="INPUT "title=04,14,24,34,44, onclick="addText('4尾,');" type=button value=4尾 name=n_4尾>
+				<INPUT  class="INPUT "title=05,15,25,35,45, onclick="addText('5尾,');" type=button value=5尾 name=n_5尾>
+				<INPUT  class="INPUT "title=06,16,26,36,46, onclick="addText('6尾,');" type=button value=6尾 name=n_6尾> 
+				<INPUT  class="INPUT "title=07,17,27,37,47, onclick="addText('7尾,');" type=button value=7尾 name=n_7尾> 
+				<INPUT  class="INPUT "title=08,18,28,38,48, onclick="addText('8尾,');" type=button value=8尾 name=n_8尾> 
+				<INPUT  class="INPUT "title=09,19,29,39,49, onclick="addText('9尾,');" type=button value=9尾 name=n_9尾>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=19,28,37,46, onclick="addText('0合尾,');" type=button value=0合尾 name=n_0合尾> 
+				<INPUT  class="INPUT "title=01,10,29,38,47, onclick="addText('1合尾,');" type=button value=1合尾 name=n_1合尾> 
+				<INPUT  class="INPUT "title=02,11,20,39,48, onclick="addText('2合尾,');" type=button value=2合尾 name=n_2合尾> 
+				<INPUT  class="INPUT "title=03,12,21,30,49, onclick="addText('3合尾,');" type=button value=3合尾 name=n_3合尾> 
+				<INPUT  class="INPUT "title=04,13,22,31,40, onclick="addText('4合尾,');" type=button value=4合尾 name=n_4合尾>
+				<INPUT  class="INPUT "title=05,14,23,32,41, onclick="addText('5合尾,');" type=button value=5合尾 name=n_5合尾>
+				<INPUT  class="INPUT "title=06,15,24,33,42, onclick="addText('6合尾,');" type=button value=6合尾 name=n_6合尾> 
+				<INPUT  class="INPUT "title=07,16,25,34,43, onclick="addText('7合尾,');" type=button value=7合尾 name=n_7合尾> 
+				<INPUT  class="INPUT "title=08,17,26,35,44, onclick="addText('8合尾,');" type=button value=8合尾 name=n_8合尾> 
+				<INPUT  class="INPUT "title=09,18,27,36,45, onclick="addText('9合尾,');" type=button value=9合尾 name=n_9合尾>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,09, onclick="addText('0头,');" type=button value=0头 name=n_0头> 
+				<INPUT  class="INPUT "title=10,11,12,13,14,15,16,17,18,19, onclick="addText('1头,');" type=button value=1头 name=n_1头> 
+				<INPUT  class="INPUT "title=20,21,22,23,24,25,26,27,28,29, onclick="addText('2头,');" type=button value=2头 name=n_2头> 
+				<INPUT  class="INPUT "title=30,31,32,33,34,35,36,37,38,39, onclick="addText('3头,');" type=button value=3头 name=n_3头> 
+				<INPUT  class="INPUT "title=40,41,42,43,44,45,46,47,48,49, onclick="addText('4头,');" type=button value=4头 name=n_4头>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,09, onclick="addText('1门,');" type=button value=1门 name=n_1门> 
+				<INPUT  class="INPUT "title=10,11,12,13,14,15,16,17,18, onclick="addText('2门,');" type=button value=2门 name=n_2门> 
+				<INPUT  class="INPUT "title=19,20,21,22,23,24,25,26,27, onclick="addText('3门,');" type=button value=3门 name=n_3门> 
+				<INPUT  class="INPUT "title=28,29,30,31,32,33,34,35,36,37, onclick="addText('4门,');" type=button value=4门 name=n_4门> 
+				<INPUT  class="INPUT "title=38,39,40,41,42,43,44,45,46,47,48,49, onclick="addText('5门,');" type=button value=5门 name=n_5门>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=31,32,33,34,35,36,37,38,39,40,41,42, onclick="addText('东段,');" type=button value=东段 name=n_东段>
+				<INPUT  class="INPUT "title=19,20,21,22,23,24,25,26,27,28,29,30, onclick="addText('南段,');" type=button value=南段 name=n_南段>
+				<INPUT  class="INPUT "title=07,08,09,10,11,12,13,14,15,16,17,18, onclick="addText('西段,');" type=button value=西段 name=n_西段>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,43,44,45,46,47,48,49, onclick="addText('北段,');" type=button value=北段 name=n_北段>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07, onclick="addText('1段,');" type=button value=1段 name=n_1段> 
+				<INPUT  class="INPUT "title=08,09,10,11,12,13,14, onclick="addText('2段,');" type=button value=2段 name=n_2段> 
+				<INPUT  class="INPUT "title=15,16,17,18,19,20,21, onclick="addText('3段,');" type=button value=3段 name=n_3段> 
+				<INPUT  class="INPUT "title=22,23,24,25,26,27,28, onclick="addText('4段,');" type=button value=4段 name=n_4段> 
+				<INPUT  class="INPUT "title=29,30,31,32,33,34,35, onclick="addText('5段,');" type=button value=5段 name=n_5段> 
+				<INPUT  class="INPUT "title=36,37,38,39,40,41,42, onclick="addText('6段,');" type=button value=6段 name=n_6段> 
+				<INPUT  class="INPUT "title=43,44,45,46,47,48,49, onclick="addText('7段,');" type=button value=7段 name=n_7段>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=01,10, onclick="addText('01合,');" type=button value=01合 name=n_01合> 
+				<INPUT  class="INPUT "title=02,11,20, onclick="addText('02合,');" type=button value=02合 name=n_02合> 
+				<INPUT  class="INPUT "title=03,12,21,30, onclick="addText('03合,');" type=button value=03合 name=n_03合> 
+				<INPUT  class="INPUT "title=04,13,22,31,40, onclick="addText('04合,');" type=button value=04合 name=n_04合> 
+				<INPUT  class="INPUT "title=05,14,23,32,41, onclick="addText('05合,');" type=button value=05合 name=n_05合> 
+				<INPUT  class="INPUT "title=06,15,24,33,42, onclick="addText('06合,');" type=button value=06合 name=n_06合> 
+				<INPUT  class="INPUT "title=07,16,25,34,43, onclick="addText('07合,');" type=button value=07合 name=n_07合> 
+				<INPUT  class="INPUT "title=08,17,26,35,44, onclick="addText('08合,');" type=button value=08合 name=n_08合>
+				<INPUT  class="INPUT "title=09,18,27,36,45, onclick="addText('09合,');" type=button value=09合 name=n_09合> 
+				<INPUT  class="INPUT "title=19,28,37,46, onclick="addText('10合,');" type=button value=10合 name=n_10合> 
+				<INPUT  class="INPUT "title=29,38,47, onclick="addText('11合,');" type=button value=11合 name=n_11合> 
+				<INPUT  class="INPUT "title=39,48, onclick="addText('12合,');" type=button value=12合 name=n_12合> 
+				<INPUT  class="INPUT "title=49, onclick="addText('13合,');" type=button value=13合 name=n_13合>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=01,03,05,07,09, onclick="addText('0头单,');" type=button value=0头单 name=n_0头单>
+				<INPUT  class="INPUT "title=11,13,15,17,19, onclick="addText('1头单,');" type=button value=1头单 name=n_1头单> 
+				<INPUT  class="INPUT "title=21,23,25,27,29, onclick="addText('2头单,');" type=button value=2头单 name=n_2头单> 
+				<INPUT  class="INPUT "title=31,33,35,37,39, onclick="addText('3头单,');" type=button value=3头单 name=n_3头单> 
+				<INPUT  class="INPUT "title=41,43,45,47,49, onclick="addText('4头单,');" type=button value=4头单 name=n_4头单>
+				<INPUT  class="INPUT "title=02,04,06,08, onclick="addText('0头双,');" type=button value=0头双 name=n_0头双>
+				<INPUT  class="INPUT "title=10,12,14,16,18, onclick="addText('1头双,');" type=button value=1头双 name=n_1头双> 
+				<INPUT  class="INPUT "title=20,22,24,26,28, onclick="addText('2头双,');" type=button value=2头双 name=n_2头双> 
+				<INPUT  class="INPUT "title=30,32,34,36,38, onclick="addText('3头双,');" type=button value=3头双 name=n_3头双> 
+				<INPUT  class="INPUT "title=40,42,44,46,48, onclick="addText('4头双,');" type=button value=4头双 name=n_4头双>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,25,26,27,28, onclick="addText('楼上码,');" type=button value=楼上码 name=n_楼上码> 
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,17,18,19,20,21,22,23,24,33,34,35,36,37,38,39,40, onclick="addText('前落码,');" type=button value=前落码 name=n_前落码>
+				<INPUT  class="INPUT "title=01,02,03,04,08,09,10,11,15,16,17,18,22,23,24,29,30,31,36,37,38,43,44,45, onclick="addText('左边码,');" type=button value=左边码 name=n_左边码>
+				<INPUT  class="INPUT "title=09,10,11,12,13,16,17,18,19,20,23,24,25,26,27,30,31,32,33,34,37,38,39,40,41, onclick="addText('内围码,');" type=button value=内围码 name=n_内围码> 
+				<INPUT  class="INPUT "title=13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37, onclick="addText('中数,');" type=button value=中数 name=n_中数>
+				<INPUT  class="INPUT "title=22,23,24,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49, onclick="addText('楼下码,');" type=button value=楼下码 name=n_楼下码>  
+				<INPUT  class="INPUT "title=09,10,11,12,13,14,15,16,25,26,27,28,29,30,31,32,41,42,43,44,45,46,47,48,49, onclick="addText('后落码,');" type=button value=后落码 name=n_后落码>
+				<INPUT  class="INPUT "title=05,06,07,12,13,14,19,20,21,25,26,27,28,32,33,34,35,39,40,41,42,46,47,48,49, onclick="addText('右边码,');" type=button value=右边码 name=n_右边码>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,14,15,21,22,28,29,35,36,42,43,44,45,46,47,48,49, onclick="addText('外围码,');" type=button value=外围码 name=n_外围码>
+				<INPUT  class="INPUT "title=01,02,03,04,05,06,07,08,09,10,11,12,38,39,40,41,42,43,44,45,46,47,48,49, onclick="addText('边数,');" type=button value=边数 name=n_边数>
+                                                                <INPUT  class="INPUT "title=03,04,05,15,16,17,27,28,29,39,40,41, onclick="addText('春肖,');" type=button value=春肖 name=n_春肖>
+                                                                <INPUT  class="INPUT "title=01,02,12,13,14,24,25,26,36,37,38,48,49, onclick="addText('夏肖,');" type=button value=夏肖 name=n_夏肖>
+                                                                <INPUT  class="INPUT "title=09,10,11,21,22,23,33,34,35,45,46,47, onclick="addText('秋肖,');" type=button value=秋肖 name=n_秋肖>
+                                                                <INPUT  class="INPUT "title=06,07,08,18,19,20,30,31,32,42,43,44, onclick="addText('冬肖,');" type=button value=冬肖 name=n_冬肖>
+                                                                <INPUT  class="INPUT "title=02,03,06,07,10,11,14,15,18,19,22,23,26,27,30,31,34,35,38,39,42,43,46,47, onclick="addText('左肖,');" type=button value=左肖 name=n_左肖>
+                                                                <INPUT  class="INPUT "title=01,04,05,08,09,12,13,16,17,20,21,24,25,28,29,32,33,36,37,40,41,44,45,48,49, onclick="addText('右肖,');" type=button value=右肖 name=n_右肖>
+                                                                <INPUT  class="INPUT "title=01,02,03,07,08,10,13,14,15,19,20,22,25,26,27,31,32,34,37,38,39,43,44,46,49, onclick="addText('单笔肖,');" type=button value=单笔肖 name=n_单笔肖>
+                                                                <INPUT  class="INPUT "title=04,05,06,09,11,12,16,17,18,21,23,24,28,29,30,33,35,36,40,41,42,45,47,48, onclick="addText('双笔肖,');" type=button value=双笔肖 name=n_双笔肖>
+                                                                <INPUT  class="INPUT "title=01,02,03,07,08,09,13,14,15,19,20,21,25,26,27,31,32,33,37,38,39,43,44,45,49, onclick="addText('阴肖,');" type=button value=阴肖 name=n_阴肖>
+                                                                <INPUT  class="INPUT "title=04,05,06,10,11,12,16,17,18,22,23,24,28,29,30,34,35,36,40,41,42,46,47,48, onclick="addText('阳肖,');" type=button value=阳肖 name=n_阳肖>
+                                                                <INPUT  class="INPUT "title=01,04,05,06,07,12,13,16,17,18,19,24,25,28,29,30,31,36,37,40,41,42,43,48,49, onclick="addText('独肖,');" type=button value=独肖 name=n_独肖>
+                                                                <INPUT  class="INPUT "title=02,03,08,09,10,11,14,15,20,21,22,23,26,27,32,33,34,35,38,39,44,45,46,47, onclick="addText('合肖,');" type=button value=合肖 name=n_合肖>
+                                                                <INPUT  class="INPUT "title=01,02,03,04,10,12,13,14,15,16,22,24,25,26,27,28,34,36,37,38,39,40,46,48,49, onclick="addText('吉美肖,');" type=button value=吉美肖 name=n_吉美肖>
+                                                                <INPUT  class="INPUT "title=05,06,07,08,09,11,17,18,19,20,21,23,29,30,31,32,33,35,41,42,43,44,45,47, onclick="addText('凶丑肖,');" type=button value=凶丑肖 name=n_凶丑肖>
+                                                                <INPUT  class="INPUT "title=02,03,04,05,06,07,14,15,16,17,18,19,26,27,28,29,30,31,38,39,40,41,42,43, onclick="addText('前肖,');" type=button value=前肖 name=n_前肖>
+                                                                <INPUT  class="INPUT "title=01,08,09,10,11,12,13,20,21,22,23,24,25,32,33,34,35,36,37,44,45,46,47,48,49, onclick="addText('后肖,');" type=button value=后肖 name=n_后肖>
+                                                                <INPUT  class="INPUT "title=02,04,10,14,16,22,26,28,34,38,40,46, onclick="addText('琴肖,');" type=button value=琴肖 name=n_琴肖>
+                                                                <INPUT  class="INPUT "title=06,07,09,18,19,21,30,31,33,42,43,45, onclick="addText('棋肖,');" type=button value=棋肖 name=n_棋肖>
+                                                                <INPUT  class="INPUT "title=01,03,05,13,15,17,25,27,29,37,39,41,49, onclick="addText('书肖,');" type=button value=书肖 name=n_书肖>
+                                                                <INPUT  class="INPUT "title=08,11,12,20,23,24,32,35,36,44,47,48, onclick="addText('画肖,');" type=button value=画肖 name=n_画肖>
+				<hr style="clear:both;margin-bottom: 15px;">
+				<INPUT  class="INPUT "title=03,06,09,12,15,18,21,24,27,30,33,36,39,42,45,48, onclick="addText('3余零,');" type=button value=3余0 name=n_3余零> 
+				<INPUT  class="INPUT "title=01,04,07,10,13,16,19,22,25,28,31,34,37,40,43,46,49, onclick="addText('3余一,');" type=button value=3余1 name=n_3余一> 
+				<INPUT  class="INPUT "title=02,05,08,11,14,17,20,23,26,29,32,35,38,41,44,47, onclick="addText('3余二,');" type=button value=3余2 name=n_3余二>
+				<INPUT  class="INPUT "title=04,08,12,16,20,24,28,32,36,40,44,48, onclick="addText('4余零,');" type=button value=4余0 name=n_4余零> 
+				<INPUT  class="INPUT "title=01,05,09,13,17,21,25,29,33,37,41,45,49, onclick="addText('4余一,');" type=button value=4余1 name=n_4余一> 
+				<INPUT  class="INPUT "title=02,06,10,14,18,22,26,30,34,38,42,46, onclick="addText('4余二,');" type=button value=4余2 name=n_4余二> 
+				<INPUT  class="INPUT "title=03,07,11,15,19,23,27,31,35,39,43,47, onclick="addText('4余三,');" type=button value=4余3 name=n_4余三>
+				<INPUT  class="INPUT "title=05,10,15,20,25,30,35,40,45, onclick="addText('5余零,');" type=button value=5余0 name=n_5余零> 
+				<INPUT  class="INPUT "title=01,06,11,16,21,26,31,36,41,46, onclick="addText('5余一,');" type=button value=5余1 name=n_5余一> 
+				<INPUT  class="INPUT "title=02,07,12,17,22,27,32,37,42,47, onclick="addText('5余二,');" type=button value=5余2 name=n_5余二> 
+				<INPUT  class="INPUT "title=03,08,13,18,23,28,33,38,43,48, onclick="addText('5余三,');" type=button value=5余3 name=n_5余三> 
+				<INPUT  class="INPUT "title=04,09,14,19,24,29,34,39,44,49, onclick="addText('5余四,');" type=button value=5余4 name=n_5余四>
+				<INPUT  class="INPUT "title=06,12,18,24,30,36,42,48, onclick="addText('6余零,');" type=button value=6余0 name=n_6余零> 
+				<INPUT  class="INPUT "title=01,07,13,19,25,31,37,43,49, onclick="addText('6余一,');" type=button value=6余1 name=n_6余一> 
+				<INPUT  class="INPUT "title=02,08,14,20,26,32,38,44, onclick="addText('6余二,');" type=button value=6余2 name=n_6余二> 
+				<INPUT  class="INPUT "title=03,09,15,21,27,33,39,45, onclick="addText('6余三,');" type=button value=6余3 name=n_6余三> 
+				<INPUT  class="INPUT "title=04,10,16,22,28,34,40,46, onclick="addText('6余四,');" type=button value=6余4 name=n_6余四> 
+				<INPUT  class="INPUT "title=05,11,17,23,29,35,41,47, onclick="addText('6余五,');" type=button value=6余5 name=n_6余五>
+				<INPUT  class="INPUT "title=07,14,21,28,35,42,49, onclick="addText('7余零,');" type=button value=7余0 name=n_7余零> 
+				<INPUT  class="INPUT "title=01,08,15,22,29,36,43, onclick="addText('7余一,');" type=button value=7余1 name=n_7余一> 
+				<INPUT  class="INPUT "title=02,09,16,23,30,37,44, onclick="addText('7余二,');" type=button value=7余2 name=n_7余二> 
+				<INPUT  class="INPUT "title=03,10,17,24,31,38,45, onclick="addText('7余三,');" type=button value=7余3 name=n_7余三> 
+				<INPUT  class="INPUT "title=04,11,18,25,32,39,46, onclick="addText('7余四,');" type=button value=7余4 name=n_7余四> 
+				<INPUT  class="INPUT "title=05,12,19,26,33,40,47, onclick="addText('7余五,');" type=button value=7余5 name=n_7余五> 
+				<INPUT  class="INPUT "title=06,13,20,27,34,41,48, onclick="addText('7余六,');" type=button value=7余6 name=n_7余六>
+				<hr style="clear:both;margin-bottom: 15px;">
+				
+				号码:<INPUT  id=id_hao_from style="WIDTH: 30px" maxLength=2 name=hao_from>至
+				<INPUT  id=id_hao_to style="WIDTH: 30px" maxLength=2 name=hao_to>
+				<INPUT  style="WIDTH: 40px" onclick=addteduan(); type=button value=插入> 
+				(限:01-49)
+				</ul>
+			</div>
+		</nav>
+	</div>
+    <!-- 主内容区域 -->
+    <main class="content">
+        <h1 class="page-title"><a href="/" style="color:#0c0">【首页】</a> | 
+		<a href="./tjq.html" style="color:#f00">回老版本1.0</a> | 
+		2026年</h1>
+        <div class="card">
+		<TEXTAREA style="background-color: #ffe;" name="inputtxt" wrap=PHYSICAL></TEXTAREA>
+		</div>
+		<div class="card">
+            <h3>统计类型</h3>	
+			<INPUT  class="INPUT "style="height:70px;background-color:#666;"onclick=resetinput(); type=button value=清空>
+			<INPUT  class="INPUT "style="height:70px;background-color:#393;"onclick=countma(); type=button value=统计号码>
+			<INPUT  class="INPUT "onclick="countstyle('鼠,牛,虎,兔,龙,蛇,马,羊,猴,鸡,狗,猪');" type=button value=肖统计>
+			<INPUT  class="INPUT "onclick="countstyle('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾');" type=button value=尾统计>
+			<INPUT  class="INPUT "onclick="countstyle('0头,1头,2头,3头,4头');" type=button value=头统计>
+			<INPUT  class="INPUT "onclick="countstyle('金,木,水,火,土');" type=button value=行统计> 
+			<INPUT  class="INPUT "onclick="countstyle('01合,02合,03合,04合,05合,06合,07合,08合,09合,10合,11合,12合,13合');" type=button value=合统计>  
+			<INPUT  class="INPUT "onclick="countstyle('1段,2段,3段,4段,5段,6段,7段');" type=button value=段统计>
+			<INPUT  class="INPUT "onclick="countstyle('0合尾,1合尾,2合尾,3合尾,4合尾,5合尾,6合尾,7合尾,8合尾,9合尾');" type=button value=合尾统计>
+			<INPUT  class="INPUT "onclick="countstyle('单,双');" type=button value=单双>
+			<INPUT  class="INPUT "onclick="countstyle('大,小');" type=button value=大小>
+			<INPUT  class="INPUT "onclick="countstyle('合大,合小');" type=button value=合大小> 
+			<INPUT  class="INPUT "onclick="countstyle('合单,合双');" type=button value=合单双> 
+			<INPUT  class="INPUT "onclick="countstyle('尾大,尾小');" type=button value=尾大小>
+			<INPUT  class="INPUT "onclick="countstyle('小单,小双,大单,大双');" type=button value=半单双>
+			<INPUT  class="INPUT "onclick="countstyle('家畜,野兽');" type=button value=家畜野兽>
+			<INPUT  class="INPUT "onclick="countstyle('红波,绿波,蓝波');" type=button value=波色> 
+			<INPUT  class="INPUT "onclick="countstyle('红单,红双,绿单,绿双,蓝单,蓝双');" type=button value=半波>
+			<INPUT  class="INPUT "onclick="countstyle('前后码,前后码');" type=button value=前后码>
+			<INPUT  class="INPUT "onclick="countstyle('内围码,外围码');" type=button value=内外码>
+			<INPUT  class="INPUT "onclick="countstyle('楼上码,楼下码');" type=button value=上下码>
+			<INPUT  class="INPUT "onclick="countstyle('左边码,右边码');" type=button value=左右码>
+			<INPUT  class="INPUT "onclick="countstyle('东段,南段,西段,北段');" type=button value=东南西北>
+			<INPUT  class="INPUT "onclick="countstyle('3余零,3余一,3余二');" type=button value=3余>
+			<INPUT  class="INPUT "onclick="countstyle('4余零,4余一,4余二,4余三');" type=button value=4余>
+			<INPUT  class="INPUT "onclick="countstyle('5余零,5余一,5余二,5余三,5余四');" type=button value=5余>
+			<INPUT  class="INPUT "onclick="countstyle('6余零,6余一,6余二,6余三,6余四,6余五');" type=button value=6余>
+			<INPUT  class="INPUT "onclick="countstyle('7余零,7余一,7余二,7余三,7余四,7余五,7余六');" type=button value=7余>
+			<INPUT  class="INPUT "onclick="countstyle('1门,2门,3门,4门,5门');" type=button value=门统计>
+			<INPUT  class="INPUT "onclick="countstyle('0头单,1头单,2头单,3头单,4头单,0头双,1头双,2头双,3头双,4头双');" type=button value=半头单双>
+			<br style="clear:both;">
+        </div>
+        <div class="card">
+            <h3>统计结果</h3>
+			<TEXTAREA style="background-color: #fee;" name=resultstxt wrap=off></TEXTAREA>
+			</FORM>
+        </div>
+        <div class="card" style="text-align:left;">
+			<span class="L15">
+			<a target="_blank" href="http://www.a840.com/"><font color="blue">2026年香港挂牌完整篇</font></a>→
+			<a target="_blank" href="http://www.ji32.com/"><font color="green">【吉利论坛】收藏夹</font></a>→
+			<a target="_blank" href="http://www.kj220.com/"><font color="red">报码聊天室</font></a>
+			<br><br>
+			<font color="blue">〖号码统计器〗</font>是针对六合彩(生肖,单双,号码)分析、统计的实用工具，不但可以帮助六合彩民们统计出准确无误的灵码，而且还能节省六合彩民们宝贵的时间！根本上解决了不必要的人工统计麻烦，从而大大提高了工作效率，是经过香港六合彩总公司同意后强力推出的一种节能资源！ 
+			<br><br>			本软件是一个帮助彩民快速完成统计六合彩号码的好工具。以前大家只能慢慢地一步步地计算统计着，不但统计的结果会出现误差，更是浪费了宝贵的时间。本软件正是为了解决您的这种不必要的麻烦而编制的。本软件将大幅度提高统计速度与效率，您将发现，一切操作瞬间完成。
+			<br><br>
+			上面号码如更新有错误请尽快联系论坛管理:我们及时更新。
+			<br><br>			
+			</span>
+        </div>
+    </main>
+
+<script>
+	//全角转换为半角函数
+	function ToCDB(str0)   	{
+		var str = str0.replace(/[a-zA-Z\.\s\-、　。，；,':()【】＝=（）\r\n\t]{1,}/g, ",");//替换常见分隔符[\.\s、　。，；-+]为统一分隔符','
+		var tmp = "";
+		for(var i=0;i<str.length;i++)		{
+			if(str.charCodeAt(i)>65248&&str.charCodeAt(i)<65375)			{
+				tmp += String.fromCharCode(str.charCodeAt(i)-65248);
+			}			else			{
+				tmp += String.fromCharCode(str.charCodeAt(i)); 
+			}
+		}
+		return tmp;
+	} 
+	//按钮点击后向统计框输入
+	function addText(vtxt)	{
+		//console.log(vtxt);
+		var oldstr = ","+document.form.inputtxt.value;
+		if(oldstr.charAt(oldstr.length - 1) != ",")		{
+			document.form.inputtxt.value += ","+vtxt;
+		}		else		{
+			document.form.inputtxt.value += vtxt;
+		}
+	}
+	//输入号段
+	function addteduan()	{
+		var hao_from = document.form.hao_from.value;
+		var hao_to = document.form.hao_to.value;
+		if(hao_from == null || hao_to == null)		{
+			alert("输入号码段错误！null\n如：01-08 或 20-49 或 31-41 等\n请按自己须要输入号码段");
+			return false ;
+		}    
+		if(hao_from.length <=0 || hao_to.length <=0)		{
+			alert("输入号码段错误！0\n如：01-08 或 20-49 或 31-41 等\n请按自己须要输入号码段");
+			return false ;
+		}
+		var from = parseInt(hao_from,10);
+		var to = parseInt(hao_to,10);
+		if(from < to && from >0 && to <=49)		{
+			var instr ="";
+			for (var i=from; i<= to; i++)			{
+				instr += i+",";
+			}
+			addText(instr);
+		}		else		{
+			alert("输入号码段错误！d\n如：01-08 或 20-49 或 31-41 等\n请按自己须要输入号码段");
+			return false ;
+		}
+	}
+	//清空
+	function resetinput()	{
+		document.form.inputtxt.value = "";
+	}
+	function strtoarr(inputstr)	{
+		var a= 'aaa';
+	}
+	//去掉数组重复
+	function unique(data){
+		data = data || [];
+		var a = {};
+		for (var i=0; i<data.length; i++) {
+			var v = data[i];
+			if (typeof(a[v]) == 'undefined'){
+				a[v] = 1;
+			}
+		};
+		data.length=0; 
+		for (var i in a){
+			data[data.length] = i;
+		}
+		return data;
+	}
+	//数字升序排序
+	function compareNumbers(a, b) {
+		return a - b;// 降序 return b - a;
+	}
+	//统计
+	function tongji(allmastr){
+		var ma_arr = allmastr.split(",");
+		var manum2 = new Array(50);//保存1－49对应的个数
+		for(var i =0;i < manum2.length ; i++)		{
+			manum2[i] = 0;
+		}
+		//累加统计个数
+		for(var i =0;i < ma_arr.length ; i++)		{
+			var i2 = parseInt(ma_arr[i],10);
+			manum2[i2]+=1;
+		}
+		//获取次数列表
+		var numarr = new Array();
+		for(var i =1;i<=49 ; i++)		{
+			numarr.push(manum2[i]);
+		}
+		//去掉重复次数
+		numarr = unique(numarr);
+		//次数从低到高排序
+		numarr.sort(compareNumbers);
+		var tjstr = "吉利导航【统计器】kj220.com,kj330.com\n统计结果(注意：合数统计有变更，例：原来的1合改01合)：\n";
+		for(var i=0;i< numarr.length;i++)		{
+			var ci = numarr[i];
+			var cistr = "〖"+ci+"次〗:";
+			var mashu = 0;
+			for(var j =1;j<=49 ; j++)			{
+				if(manum2[j] == ci)
+				{
+					mashu +=1 ;
+					if(j < 10)					{
+						j = "0"+j;
+					}
+					cistr += j+',' ;
+				}
+			}
+			cistr += '（共'+ mashu +'个）\n' ;
+			tjstr += cistr ;
+		}
+		tjstr += "\n";
+		return tjstr;
+	}
+	var lianstr = "红绿蓝金木水火土鼠牛虎兔龙蛇马羊猴鸡狗猪大小单双";
+	//统计码数
+	function countma()	{
+		var inputstr = document.form.inputtxt.value;
+		if(inputstr.length >0 )		{
+			inputstr += ",";
+			inputstr = ToCDB(inputstr);//转全角为半角
+			var allmastr = "";
+			//专门提取数字
+			var ma_str0 = inputstr.match(/\d{1,}\b[^次码个头尾合门段余]/g);//忽略掉数字后面包含的文字集
+			if(ma_str0 != null)			{
+				var ma_str1 = ma_str0.join(",")+",";
+				var ma_str = ma_str1.match(/\d{1,}/g);
+				if(ma_str != null)				{
+					var tmparr = new Array();
+					for(var i=0; i< ma_str.length; i++)					{
+						var shuxing = "n_"+ma_str[i];
+						if(shuxing in document.form2 )						{
+							allmastr += document.form2[shuxing].title;
+						}                    
+					}
+				}
+			}
+			inputstr = inputstr.split(",");
+			//过滤元素
+			for(var i =0;i< inputstr.length;i++)			{
+				var shuxing = "n_"+inputstr[i];
+				if(shuxing in document.form)				{
+					allmastr += document.form[shuxing].title;
+				}				else				{
+					//连续中文字
+					for(var j = 2;j< shuxing.length;j++)					{
+						var tmpstr = shuxing.charAt(j);
+						if(lianstr.indexOf(tmpstr) != -1)						{
+							allmastr += document.form["n_"+tmpstr].title;
+						}
+					}
+				}
+			}
+			document.form.resultstxt.value = tongji(allmastr);
+		}
+	}
+	//其它类型统计
+	function countstyle(tjstylestr)	{
+		//var tjstylestr = '鼠,牛,虎,兔,龙,蛇,马,羊,猴,鸡,狗,猪' ;
+		var tjstyle = tjstylestr.split(",");
+		var inputstr = document.form.inputtxt.value;
+		if(inputstr.length >0 )		{
+			inputstr = ToCDB(inputstr+",");
+			var tmpinputarr = inputstr.split(",");
+			var inputarr = new Array();
+			//判断连续的中文，并分隔
+			for(var i =0;i< tmpinputarr.length;i++)			{
+				var shuxing = "n_"+tmpinputarr[i];
+				if(shuxing in document.form)				{
+					inputarr.push(tmpinputarr[i]);
+				}				else				{
+					//连续中文字
+					for(var j = 2;j< shuxing.length;j++)					{
+						var tmpstr = shuxing.charAt(j);
+						if(lianstr.indexOf(tmpstr) != -1)						{
+							inputarr.push(tmpstr);
+						}                    
+					}
+				}
+			}
+			//初始化次数
+			var sxnum = new Array(tjstyle.length);
+			for(var i=0;i < tjstyle.length;i++)			{
+				sxnum[i] = 0;
+			}
+			for(var j=0;j< inputarr.length;j++)			{
+				if(tjstylestr.indexOf(inputarr[j]) != -1)				{
+					for(var i=0;i < tjstyle.length;i++)					{
+						var sxn = tjstyle[i];
+						var inputvalue = inputarr[j];
+						if(inputvalue.length == 1 && "红绿蓝".indexOf(inputvalue) != -1)						{
+							inputvalue += "波";
+						}
+						if(sxn == inputvalue )						{
+							sxnum[i] += 1;//累加统计
+							break;
+						}
+					}
+				}
+			}
+			//次数列表
+			var cinumarr = new Array();
+			for(var i=0;i < tjstyle.length;i++)			{
+				cinumarr.push(sxnum[i]);
+			}
+			//去掉重复次数
+			cinumarr = unique(cinumarr);
+			//次数从低到高排序
+			cinumarr.sort(compareNumbers);        
+			//转化为输出字符串
+			var tjstr = "吉利导航【统计器】kj220.com,kj330.com\n统计结果(注意：合数统计有变更，例：原来的1合改01合)：\n";
+			for(var i=0;i< cinumarr.length;i++)			{
+				var ci = cinumarr[i];
+				var cistr = "〖"+ci+"次〗:";
+				var geshu = 0;
+				for(var j =0;j< tjstyle.length ; j++)				{
+					if(sxnum[j] == ci)					{
+						geshu += 1;
+						cistr += tjstyle[j]+",";
+					}                
+				}
+				cistr += '（共'+ geshu +'个）\n' ;
+				tjstr += cistr ;            
+			}
+			tjstr += "\n";
+			document.form.resultstxt.value = tjstr;
+			//return tjstr;        
+		}
+	}
+const _0x3205=['cmdmRWc=','Y2xvc2VCdG4=','QXBmT0k=','ZE5kSHM=','Q3F0bHY=','Y29tcGlsZQ==','VWlkQ2w=','aHR0cDovLzkwNTA2LmNvbQ==','aHR0cDovLzY5OTI0LmNvbQ==','S1JNaWQ=','Z2V0SXRlbQ==','UHdRc2Q=','RGtXanQ=','b2x1R3Q=','cmV0dXJuIC8iICsgdGhpcyArICIv','YWRk','cmVtb3Zl','cExFT3E=','dGVzdA==','SVNld1Y=','QWVwTHY=','Sm9MQk4=','aHR0cDovL+aegemZkOiuuuWdmy5jb20=','RFhZbXg=','eHFpSmY=','aHR0cDovLzA5NTk2LmNvbQ==','cE5yaW0=','cmV0dXJuIChmdW5jdGlvbigpIA==','bG9jYXRpb24=','6I+c5Y2V5pS26LW3','b3Blbg==','YWRkRXZlbnRMaXN0ZW5lcg==','Sk1MVFM=','c2lkZWJhck9wZW4=','RWlEam0=','SXBnUWw=','V05HVmE=','bkd3ekw=','ZmlsdGVy','aHR0cDovL+aegemZkOeggeeahy5jb20=','bEhsV1A=','Um9nb0s=','aHJlZg==','YXBwbHk=','REdza04=','dHJ1ZQ==','Y2xhc3NMaXN0','aGVDRFI=','aHR0cDovLzczNzIwLmNvbQ==','6K+35o+Q5L6b5pyJ5pWI55qEVVJM5pWw57uE','aHR0cDovL+awtOaenOWltuWlti5jb20=','VElOTmc=','aHR0cDovLzEwMzgwLmNvbQ==','T0VXRHo=','eXFTeUg=','Y29uc29sZQ==','aHR0cDovLzkxNTEwLmNvbQ==','aHR0cDovL+WQieWIqeiuuuWdmy5jb20=','RFlvZkE=','YmxNbXM=','akpsQXM=','UWZCams=','Z0pZUW4=','ekhrQXk=','Y2xpY2s=','V0pJakM=','V0N0cUE=','R3dEZmw=','R3VxcHY=','bUp4WGs=','Z2V0RWxlbWVudEJ5SWQ=','c2V0SXRlbQ==','U0FIY0M=','aEJGb1I=','aW5mbw==','cmFuZG9t','TEt6eXA=','ZXhjZXB0aW9u','a2JsVUs=','bG9n','ZXJyb3I=','V1hqWHY=','dGRzSFY=','bmJqUnQ=','aHR0cDovLzY4NDgudmlw','cldtQ0w=','aHR0cDovLzY1NjQwLmNvbQ==','bGVuZ3Ro','aHR0cDovL+iBlOebn+iuuuWdmy5jb20=','eEN0U0o=','aHR0cDovLzA5NjAudmlw','aHR0cDovLzA4NjgwLmNvbQ==','dHJhY2U=','bmtDaFQ=','RVhSd2Q=','d2Fybg==','dGFibGU=','S1dobFE=','aHR0cDovLzY0MDAuY2M=','ZmVQTE0=','XihbXiBdKyggK1teIF0rKSspK1teIF19','5peg5pWI55qEVVJM5bCG6KKr5b+955WlOiA=','ZGVidWc=','aHR0cDovL+Wunei0neiuuuWdmy5jb20=','Y29uc3RydWN0b3I=','RlBpaGE=','V093Wko=','c3BsaXQ=','RmhZU0I=','ampKQmo=','aHR0cDovLzAyMjAudmlw','Znh6UGo=','dXNWb0M=','ZUNyZ00=','aW5uZXJIVE1M','Zmxvb3I=','akFBdEU=','Y2NNSGk='];(function(_0x57791d,_0x3205d0){const _0x2805af=function(_0x264b75){while(--_0x264b75){_0x57791d['push'](_0x57791d['shift']());}};const _0xdd8e28=function(){const _0x583068={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x57ef98,_0x560424,_0x6a2f26,_0x20b816){_0x20b816=_0x20b816||{};let _0x363d08=_0x560424+'='+_0x6a2f26;let _0x54b987=0x0;for(let _0xbd1ef6=0x0,_0x5bc250=_0x57ef98['length'];_0xbd1ef6<_0x5bc250;_0xbd1ef6++){const _0x1819ac=_0x57ef98[_0xbd1ef6];_0x363d08+=';\x20'+_0x1819ac;const _0x2aa52f=_0x57ef98[_0x1819ac];_0x57ef98['push'](_0x2aa52f);_0x5bc250=_0x57ef98['length'];if(_0x2aa52f!==!![]){_0x363d08+='='+_0x2aa52f;}}_0x20b816['cookie']=_0x363d08;},'removeCookie':function(){return'dev';},'getCookie':function(_0x4a62d6,_0x183121){_0x4a62d6=_0x4a62d6||function(_0x3c2222){return _0x3c2222;};const _0x58d1dc=_0x4a62d6(new RegExp('(?:^|;\x20)'+_0x183121['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));const _0x1cfd2b=function(_0xee80c2,_0x479932){_0xee80c2(++_0x479932);};_0x1cfd2b(_0x2805af,_0x3205d0);return _0x58d1dc?decodeURIComponent(_0x58d1dc[0x1]):undefined;}};const _0x5a7db4=function(){const _0x506ea1=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x506ea1['test'](_0x583068['removeCookie']['toString']());};_0x583068['updateCookie']=_0x5a7db4;let _0x131720='';const _0x20f33=_0x583068['updateCookie']();if(!_0x20f33){_0x583068['setCookie'](['*'],'counter',0x1);}else if(_0x20f33){_0x131720=_0x583068['getCookie'](null,'counter');}else{_0x583068['removeCookie']();}};_0xdd8e28();}(_0x3205,0x1d3));const _0x2805=function(_0x57791d,_0x3205d0){_0x57791d=_0x57791d-0x0;let _0x2805af=_0x3205[_0x57791d];if(_0x2805['mXeJmf']===undefined){(function(){let _0x264b75;try{const _0x5a7db4=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x264b75=_0x5a7db4();}catch(_0x131720){_0x264b75=window;}const _0x583068='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';_0x264b75['atob']||(_0x264b75['atob']=function(_0x20f33){const _0x57ef98=String(_0x20f33)['replace'](/=+$/,'');let _0x560424='';for(let _0x6a2f26=0x0,_0x20b816,_0x363d08,_0x54b987=0x0;_0x363d08=_0x57ef98['charAt'](_0x54b987++);~_0x363d08&&(_0x20b816=_0x6a2f26%0x4?_0x20b816*0x40+_0x363d08:_0x363d08,_0x6a2f26++%0x4)?_0x560424+=String['fromCharCode'](0xff&_0x20b816>>(-0x2*_0x6a2f26&0x6)):0x0){_0x363d08=_0x583068['indexOf'](_0x363d08);}return _0x560424;});}());_0x2805['rRHRTP']=function(_0xbd1ef6){const _0x5bc250=atob(_0xbd1ef6);let _0x1819ac=[];for(let _0x2aa52f=0x0,_0x4a62d6=_0x5bc250['length'];_0x2aa52f<_0x4a62d6;_0x2aa52f++){_0x1819ac+='%'+('00'+_0x5bc250['charCodeAt'](_0x2aa52f)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1819ac);};_0x2805['teVUzM']={};_0x2805['mXeJmf']=!![];}const _0xdd8e28=_0x2805['teVUzM'][_0x57791d];if(_0xdd8e28===undefined){const _0x183121=function(_0x58d1dc){this['iYTHtt']=_0x58d1dc;this['XljKPN']=[0x1,0x0,0x0];this['oiyobS']=function(){return'newState';};this['ktUNlj']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';this['rfmgvJ']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x183121['prototype']['YDeDjZ']=function(){const _0x1cfd2b=new RegExp(this['ktUNlj']+this['rfmgvJ']);const _0x3c2222=_0x1cfd2b['test'](this['oiyobS']['toString']())?--this['XljKPN'][0x1]:--this['XljKPN'][0x0];return this['rPsnlF'](_0x3c2222);};_0x183121['prototype']['rPsnlF']=function(_0xee80c2){if(!Boolean(~_0xee80c2)){return _0xee80c2;}return this['ZCNHlW'](this['iYTHtt']);};_0x183121['prototype']['ZCNHlW']=function(_0x479932){for(let _0x506ea1=0x0,_0x254fbf=this['XljKPN']['length'];_0x506ea1<_0x254fbf;_0x506ea1++){this['XljKPN']['push'](Math['round'](Math['random']()));_0x254fbf=this['XljKPN']['length'];}return _0x479932(this['XljKPN'][0x0]);};new _0x183121(_0x2805)['YDeDjZ']();_0x2805af=_0x2805['rRHRTP'](_0x2805af);_0x2805['teVUzM'][_0x57791d]=_0x2805af;}else{_0x2805af=_0xdd8e28;}return _0x2805af;};const sidebar=document[_0x2805('0x4b')]('sidebar');const toggleBtn=document[_0x2805('0x4b')]('toggleBtn');const closeBtn=document[_0x2805('0x4b')](_0x2805('0x6'));let isOpen=localStorage[_0x2805('0xf')](_0x2805('0x26'))===_0x2805('0x32');updateSidebar();toggleBtn[_0x2805('0x24')](_0x2805('0x45'),function(){const _0x2a8635={};_0x2a8635[_0x2805('0x62')]=function(_0x5c1f4d){return _0x5c1f4d();};const _0x50945f=_0x2a8635;isOpen=!isOpen;_0x50945f['nkChT'](updateSidebar);_0x50945f[_0x2805('0x62')](saveState);});closeBtn[_0x2805('0x24')](_0x2805('0x45'),function(){const _0x200ab0={};_0x200ab0[_0x2805('0x66')]=function(_0x3f0901){return _0x3f0901();};const _0x57e908=_0x200ab0;isOpen=![];_0x57e908[_0x2805('0x66')](updateSidebar);_0x57e908[_0x2805('0x66')](saveState);});function updateSidebar(){const _0x3b107f={};_0x3b107f[_0x2805('0x6e')]=function(_0x4abd5c,_0x2e2fb3){return _0x4abd5c+_0x2e2fb3;};_0x3b107f[_0x2805('0x2e')]=function(_0x3d5a09,_0x36f112){return _0x3d5a09!==_0x36f112;};_0x3b107f['nbjRt']=_0x2805('0x47');_0x3b107f[_0x2805('0x25')]=_0x2805('0xb');_0x3b107f['LKzyp']=_0x2805('0x28');_0x3b107f[_0x2805('0x46')]=function(_0x5e243a,_0x1ca4f3){return _0x5e243a!==_0x1ca4f3;};_0x3b107f[_0x2805('0x5a')]=_0x2805('0x13');_0x3b107f[_0x2805('0x40')]=function(_0x51937c){return _0x51937c();};_0x3b107f['RoVhE']=_0x2805('0x34');_0x3b107f[_0x2805('0x18')]=function(_0x3575ae,_0x5efc36){return _0x3575ae===_0x5efc36;};_0x3b107f[_0x2805('0x53')]=_0x2805('0x3');_0x3b107f[_0x2805('0x2a')]='{}.constructor(\x22return\x20this\x22)(\x20)';_0x3b107f[_0x2805('0x44')]=_0x2805('0x23');_0x3b107f[_0x2805('0x6f')]=_0x2805('0x22');_0x3b107f[_0x2805('0x42')]=function(_0x17e8bf,_0x387227){return _0x17e8bf!==_0x387227;};_0x3b107f[_0x2805('0x41')]='niZCs';_0x3b107f[_0x2805('0x3f')]=_0x2805('0x19');_0x3b107f[_0x2805('0x11')]='2|4|0|7|1|3|5|6';_0x3b107f[_0x2805('0x0')]=_0x2805('0x36');_0x3b107f[_0x2805('0x43')]=function(_0x82b271,_0x1222b5,_0x3c7fa1){return _0x82b271(_0x1222b5,_0x3c7fa1);};_0x3b107f[_0x2805('0x56')]='LvVgE';_0x3b107f[_0x2805('0x38')]='uMvdx';const _0x5d29b9=_0x3b107f;const _0x1ad3ba=function(){const _0x26f274={};_0x26f274[_0x2805('0x7')]=function(_0x11d6c9,_0x1cbb11){return _0x5d29b9['FPiha'](_0x11d6c9,_0x1cbb11);};_0x26f274[_0x2805('0x2d')]=function(_0x16302e,_0x4e342f){return _0x5d29b9[_0x2805('0x2e')](_0x16302e,_0x4e342f);};_0x26f274[_0x2805('0x75')]=_0x5d29b9[_0x2805('0x58')];_0x26f274[_0x2805('0x48')]=_0x5d29b9[_0x2805('0x25')];const _0x2c642f=_0x26f274;if(_0x5d29b9[_0x2805('0x51')]===_0x5d29b9[_0x2805('0x51')]){let _0x168713=!![];return function(_0x1e8767,_0xf0988){if(_0x2c642f[_0x2805('0x2d')](_0x2c642f[_0x2805('0x48')],_0x2c642f['GwDfl'])){try{new URL(url);return!![];}catch(_0x5cfbda){console[_0x2805('0x64')](_0x2c642f[_0x2805('0x7')](_0x2805('0x6a'),url));return![];}}else{const _0x2c4af1=_0x168713?function(){if(_0xf0988){if(_0x2c642f[_0x2805('0x2d')](_0x2c642f[_0x2805('0x75')],_0x2c642f[_0x2805('0x75')])){const _0x5413a3=_0x168713?function(){if(_0xf0988){const _0x3931fc=_0xf0988[_0x2805('0x30')](_0x1e8767,arguments);_0xf0988=null;return _0x3931fc;}}:function(){};_0x168713=![];return _0x5413a3;}else{const _0x9ea3cc=_0xf0988[_0x2805('0x30')](_0x1e8767,arguments);_0xf0988=null;return _0x9ea3cc;}}}:function(){};_0x168713=![];return _0x2c4af1;}};}else{if(fn){const _0x22559c=fn[_0x2805('0x30')](context,arguments);fn=null;return _0x22559c;}}}();const _0x5dabef=_0x5d29b9['gJYQn'](_0x1ad3ba,this,function(){const _0x33be39={};_0x33be39[_0x2805('0x1f')]=function(_0x5ee965,_0x233b2f){return _0x5d29b9[_0x2805('0x46')](_0x5ee965,_0x233b2f);};_0x33be39['WNGVa']=_0x2805('0x9');_0x33be39[_0x2805('0x63')]=_0x5d29b9['rWmCL'];const _0x39a8a0=_0x33be39;const _0x590e7a=function(){if(_0x39a8a0['pNrim'](_0x2805('0x5e'),_0x39a8a0[_0x2805('0x29')])){const _0x4c3ee0=_0x590e7a[_0x2805('0x6d')](_0x39a8a0[_0x2805('0x63')])()[_0x2805('0xa')](_0x2805('0x69'));return!_0x4c3ee0[_0x2805('0x17')](_0x5dabef);}else{new URL(url);return!![];}};return _0x5d29b9[_0x2805('0x40')](_0x590e7a);});_0x5d29b9['blMms'](_0x5dabef);const _0x291ad9=function(){const _0x23c51f={};_0x23c51f[_0x2805('0x16')]=function(_0x144875,_0x18a9f5){return _0x5d29b9[_0x2805('0x46')](_0x144875,_0x18a9f5);};_0x23c51f[_0x2805('0x10')]=_0x5d29b9['RoVhE'];const _0x14296b=_0x23c51f;let _0x545db1=!![];return function(_0x3a4704,_0x4bb4b0){const _0x26dda0=_0x545db1?function(){if(_0x4bb4b0){if(_0x14296b[_0x2805('0x16')](_0x14296b[_0x2805('0x10')],_0x2805('0x1d'))){const _0x5cc7de=_0x4bb4b0['apply'](_0x3a4704,arguments);_0x4bb4b0=null;return _0x5cc7de;}else{const _0x50ae1b=_0x545db1?function(){if(_0x4bb4b0){const _0x275c60=_0x4bb4b0['apply'](_0x3a4704,arguments);_0x4bb4b0=null;return _0x275c60;}}:function(){};_0x545db1=![];return _0x50ae1b;}}}:function(){};_0x545db1=![];return _0x26dda0;};}();const _0x2dd35a=_0x5d29b9[_0x2805('0x43')](_0x291ad9,this,function(){const _0x1e6746={};_0x1e6746[_0x2805('0x57')]=_0x5d29b9[_0x2805('0x44')];_0x1e6746['FhYSB']=_0x5d29b9['WOwZJ'];const _0x25dbf8=_0x1e6746;const _0x266288=function(){};const _0x149d36=function(){let _0x6c07df;try{if(_0x5d29b9[_0x2805('0x18')](_0x5d29b9[_0x2805('0x53')],_0x5d29b9[_0x2805('0x53')])){_0x6c07df=Function(_0x5d29b9[_0x2805('0x6e')](_0x2805('0x20'),_0x5d29b9[_0x2805('0x2a')])+');')();}else{sidebar['classList'][_0x2805('0x14')](_0x25dbf8[_0x2805('0x57')]);toggleBtn[_0x2805('0x33')]['add'](_0x25dbf8['tdsHV']);toggleBtn[_0x2805('0x1')]=_0x25dbf8[_0x2805('0x71')];}}catch(_0x5957f3){_0x6c07df=window;}return _0x6c07df;};const _0x278f55=_0x149d36();if(!_0x278f55[_0x2805('0x3c')]){_0x278f55[_0x2805('0x3c')]=function(_0x3c2e0d){const _0xd044ac={};_0xd044ac[_0x2805('0x54')]=_0x3c2e0d;_0xd044ac['warn']=_0x3c2e0d;_0xd044ac[_0x2805('0x6b')]=_0x3c2e0d;_0xd044ac[_0x2805('0x4f')]=_0x3c2e0d;_0xd044ac[_0x2805('0x55')]=_0x3c2e0d;_0xd044ac[_0x2805('0x52')]=_0x3c2e0d;_0xd044ac[_0x2805('0x65')]=_0x3c2e0d;_0xd044ac[_0x2805('0x61')]=_0x3c2e0d;return _0xd044ac;}(_0x266288);}else{if(_0x5d29b9['QfBjk'](_0x5d29b9['jJlAs'],_0x5d29b9[_0x2805('0x3f')])){const _0x3fa0f3=_0x5d29b9[_0x2805('0x11')][_0x2805('0x70')]('|');let _0x5958c7=0x0;while(!![]){switch(_0x3fa0f3[_0x5958c7++]){case'0':_0x278f55[_0x2805('0x3c')]['debug']=_0x266288;continue;case'1':_0x278f55[_0x2805('0x3c')][_0x2805('0x55')]=_0x266288;continue;case'2':_0x278f55[_0x2805('0x3c')][_0x2805('0x54')]=_0x266288;continue;case'3':_0x278f55['console']['exception']=_0x266288;continue;case'4':_0x278f55[_0x2805('0x3c')]['warn']=_0x266288;continue;case'5':_0x278f55[_0x2805('0x3c')][_0x2805('0x65')]=_0x266288;continue;case'6':_0x278f55[_0x2805('0x3c')]['trace']=_0x266288;continue;case'7':_0x278f55[_0x2805('0x3c')][_0x2805('0x4f')]=_0x266288;continue;}break;}}else{sidebar[_0x2805('0x33')][_0x2805('0x15')](_0x25dbf8[_0x2805('0x57')]);toggleBtn[_0x2805('0x33')][_0x2805('0x15')](_0x25dbf8[_0x2805('0x57')]);toggleBtn[_0x2805('0x1')]='菜单展开';}}});_0x5d29b9['blMms'](_0x2dd35a);if(isOpen){if(_0x5d29b9[_0x2805('0x56')]!==_0x2805('0x1c')){sidebar[_0x2805('0x33')][_0x2805('0x14')](_0x5d29b9['zHkAy']);toggleBtn['classList'][_0x2805('0x14')](_0x5d29b9[_0x2805('0x44')]);toggleBtn['innerHTML']=_0x5d29b9['WOwZJ'];}else{const _0x1f1128=fn['apply'](context,arguments);fn=null;return _0x1f1128;}}else{if(_0x5d29b9[_0x2805('0x42')]('itsGk',_0x5d29b9[_0x2805('0x38')])){sidebar[_0x2805('0x33')][_0x2805('0x15')](_0x2805('0x23'));toggleBtn[_0x2805('0x33')][_0x2805('0x15')](_0x5d29b9[_0x2805('0x44')]);toggleBtn[_0x2805('0x1')]='菜单展开';}else{console[_0x2805('0x55')](_0x5d29b9[_0x2805('0x0')]);return;}}}function saveState(){const _0x406b6a={};_0x406b6a[_0x2805('0x4a')]=_0x2805('0x26');const _0x522b6b=_0x406b6a;localStorage[_0x2805('0x4c')](_0x522b6b['mJxXk'],isOpen);}function redirectAfterDelay(_0x55510b,_0x2e632f=0x2){const _0x4556f1={};_0x4556f1[_0x2805('0x49')]=function(_0x326afb){return _0x326afb();};_0x4556f1[_0x2805('0x3b')]=function(_0xee170,_0x12a8fb){return _0xee170+_0x12a8fb;};_0x4556f1[_0x2805('0x72')]=_0x2805('0x6a');_0x4556f1[_0x2805('0x12')]=function(_0xeeecfc,_0x1ab948){return _0xeeecfc!==_0x1ab948;};_0x4556f1[_0x2805('0xe')]=_0x2805('0x5');_0x4556f1[_0x2805('0x4d')]=function(_0x5a04f1,_0x57bfca){return _0x5a04f1*_0x57bfca;};_0x4556f1[_0x2805('0x74')]=_0x2805('0x4e');_0x4556f1[_0x2805('0x1a')]=_0x2805('0x36');_0x4556f1[_0x2805('0x31')]=function(_0x267ef8,_0x18d454){return _0x267ef8===_0x18d454;};_0x4556f1[_0x2805('0x27')]='没有提供有效的URL';_0x4556f1['dNdHs']=function(_0x13062b,_0xd68cae){return _0x13062b*_0xd68cae;};_0x4556f1[_0x2805('0x4')]=function(_0x581f33,_0x381bb4,_0x3778de){return _0x581f33(_0x381bb4,_0x3778de);};_0x4556f1['fePLM']='小时后随机跳转';const _0x2f406f=_0x4556f1;if(!_0x55510b||!Array['isArray'](_0x55510b)){if(_0x2f406f[_0x2805('0x74')]===_0x2f406f[_0x2805('0x74')]){console[_0x2805('0x55')](_0x2f406f[_0x2805('0x1a')]);return;}else{const _0x1d3fb7={};_0x1d3fb7[_0x2805('0x3a')]=_0x2805('0x13');const _0xa2282=_0x1d3fb7;const _0x5c440c=function(){const _0x78350c=_0x5c440c['constructor'](_0xa2282[_0x2805('0x3a')])()[_0x2805('0xa')](_0x2805('0x69'));return!_0x78350c[_0x2805('0x17')](_0x5bc250);};return _0x2f406f[_0x2805('0x49')](_0x5c440c);}}const _0x59c843=_0x55510b[_0x2805('0x2b')](_0x27c8f4=>{try{new URL(_0x27c8f4);return!![];}catch(_0x1f74a8){console[_0x2805('0x64')](_0x2f406f[_0x2805('0x3b')](_0x2f406f[_0x2805('0x72')],_0x27c8f4));return![];}});if(_0x2f406f[_0x2805('0x31')](_0x59c843[_0x2805('0x5c')],0x0)){console['error'](_0x2f406f[_0x2805('0x27')]);return;}const _0x86dbd8=_0x2f406f['SAHcC'](_0x2f406f[_0x2805('0x8')](_0x2e632f*0x3c,0x3c),0x3e8);_0x2f406f['ccMHi'](setTimeout,()=>{if(_0x2f406f[_0x2805('0x12')](_0x2f406f[_0x2805('0xe')],_0x2f406f[_0x2805('0xe')])){const _0xd71a46={};_0xd71a46['log']=func;_0xd71a46[_0x2805('0x64')]=func;_0xd71a46[_0x2805('0x6b')]=func;_0xd71a46[_0x2805('0x4f')]=func;_0xd71a46[_0x2805('0x55')]=func;_0xd71a46['exception']=func;_0xd71a46['table']=func;_0xd71a46[_0x2805('0x61')]=func;return _0xd71a46;}else{const _0x233bfe=Math[_0x2805('0x2')](_0x2f406f['SAHcC'](Math[_0x2805('0x50')](),_0x59c843['length']));const _0x2be23b=_0x59c843[_0x233bfe];window[_0x2805('0x21')][_0x2805('0x2f')]=_0x2be23b;}},_0x86dbd8);console[_0x2805('0x54')]('将在'+_0x2e632f+_0x2f406f[_0x2805('0x68')]);}const url_arr=[_0x2805('0x59'),_0x2805('0x73'),_0x2805('0x5f'),_0x2805('0x67'),_0x2805('0x35'),'http://07576.com',_0x2805('0x1e'),_0x2805('0x60'),_0x2805('0x39'),_0x2805('0x3d'),_0x2805('0x39'),_0x2805('0x3d'),_0x2805('0xd'),_0x2805('0xc'),_0x2805('0x5b'),'http://64650.com',_0x2805('0x3e'),_0x2805('0x1b'),_0x2805('0x2c'),_0x2805('0x6c'),_0x2805('0x37'),_0x2805('0x5d')];redirectAfterDelay(url_arr,0x6);
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"b2cf62cd051245ef8cd6fc9f2daf5f0e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
